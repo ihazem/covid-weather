@@ -266,11 +266,11 @@ spark-submit --packages anguenot:pyspark-cassandra:2.4.0 --jars jars/pyspark-cas
 
 
 ## Datasets:
-https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset
-https://www.kaggle.com/leela2299/weather-covid19
+* https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset
+* https://www.kaggle.com/leela2299/weather-covid19
 
 ## References:
-https://github.com/Kaggle/kaggle-api/blob/master/kaggle/api/kaggle_api_extended.py
-https://technowhisp.com/kaggle-api-python-documentation/
-http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions
-https://spark.apache.org/docs/2.3.0/sql-programming-guide.html
+* https://github.com/Kaggle/kaggle-api/blob/master/kaggle/api/kaggle_api_extended.py
+* https://technowhisp.com/kaggle-api-python-documentation/
+* http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#module-pyspark.sql.functions
+* https://spark.apache.org/docs/2.3.0/sql-programming-guide.html
