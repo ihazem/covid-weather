@@ -10,22 +10,30 @@
 6. Reporting/Visualization
 7. Data Archival/Destruction
 
+![Alt text](images/Data-Lifecycle.png?raw=true)
+
 
 ### Data Problem Definition
-Understanding the link (if any) between weather and coronavirus cases
+Does weather have an impact on the spread of COVID-19?
 
 ### Dataset Discovery
-Critical to find reliable dataset sources. For this exercise, I went with data from kaggle.com, which is considered fairly reliable, but is not from the actual source data and not rigorously peer-reviewed.
+Critical to find reliable dataset sources. For this exercise, I went with data from kaggle.com, which is considered fairly reliable, but is not from the actual source data and hence quality may not be as reliable.
 Typically this may involve paying to get the reliable data sources you need
 
 ### Data Ingest
-Use Spark to ingest datasets into Spark RDD's
-Will need to perform some cleansing of the data and transformations
+Use Spark to ingest datasets into Spark dataframes
+Perform some cleansing of the data and transformations
+Denormalize the dataset and then write to Cassandra
 
 
+![Alt text](images/Data-Transformation-Cleansing.png?raw=true)
+![Alt text](images/Denormalize-Ingest.png?raw=true)
 
 
 ## Environment
+
+![Alt text](images/Data-Tools-Steps.png?raw=true)
+
 ### To install Spark locally (on Mac):
 ```
 brew install scala
