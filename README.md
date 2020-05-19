@@ -261,13 +261,23 @@ root
 
 ## To run:
 ```
-spark-submit --packages anguenot:pyspark-cassandra:2.4.0 --jars jars/pyspark-cassandra-2.4.0.jar,jars/spark-cassandra-connector-2.4.0-s_2.11.jar --py-files jars/pyspark-cassandra-2.4.0.jar,jars/spark-cassandra-connector-2.4.0-s_2.11.jar --conf spark.cassandra.connection.host=127.0.0.1 covid-weather.py
+spark-submit --packages anguenot:pyspark-cassandra:2.4.0 --jars jars/pyspark-cassandra-2.4.0.jar,jars/spark-cassandra-connector-2.4.0-s_2.11.jar --py-files jars/pyspark-cassandra-2.4.0.jar,jars/spark-cassandra-connector-2.4.0-s_2.11.jar --conf spark.cassandra.connection.host=127.0.0.1 covid-weather.py <COUNTRY>
+```
+
+For example:
+
+```
+spark-submit --packages anguenot:pyspark-cassandra:2.4.0 --jars jars/pyspark-cassandra-2.4.0.jar,jars/spark-cassandra-connector-2.4.0-s_2.11.jar --py-files jars/pyspark-cassandra-2.4.0.jar,jars/spark-cassandra-connector-2.4.0-s_2.11.jar --conf spark.cassandra.connection.host=127.0.0.1 covid-weather.py Malta
 ```
 
 
 ## Datasets:
 * https://www.kaggle.com/sudalairajkumar/novel-corona-virus-2019-dataset
 * https://www.kaggle.com/leela2299/weather-covid19
+
+## Results
+![Alt text](images/Malta.png?raw=true)
+![Alt text](images/Afghanistan.png?raw=true)
 
 ## References:
 * https://github.com/Kaggle/kaggle-api/blob/master/kaggle/api/kaggle_api_extended.py

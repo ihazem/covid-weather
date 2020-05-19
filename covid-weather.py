@@ -7,7 +7,18 @@ from pyspark.sql import SparkSession
 from os import path
 import zipfile
 from kaggle.api.kaggle_api_extended import KaggleApi
+import pandas as pd
+import matplotlib.pyplot as plt
+import sys
 
+
+def cmd_line_arg():
+  if len(sys.argv) >= 2:
+    country=sys.argv[1]
+    print("Country defined is: %s" % country)
+    return country
+  else:
+    print("ERROR: Country is not defined on the command line!!")
 
 
 def get_datasets():
@@ -25,7 +36,7 @@ def get_datasets():
       zip_ref.extractall(".")
 
 
-def data_analytics(weathercovid_df):
+def data_analytics(weathercovid_df,country):
   ######################
   # Data analytics phase
   ######################
@@ -36,17 +47,20 @@ def data_analytics(weathercovid_df):
 
   print("Finished reading data!")
 
-  print("Read in data for Malta...")
-  malta = cw.where(cw.country_region == "Malta")
+  print("Filter data for %s" % country)
+  country_f = cw.where(cw.country_region == country)
 
   print("Convert to Pandas DF for charting/visualization...")
-  pandas_df = malta.toPandas()
+  pandas_df = country_f.toPandas()
 
   print("Convert date column to string...")
   pandas_df['date'] = pd.to_datetime(pandas_df.date)
-  pandas_df['date'] = pandas_df['date'].dt.strftime('%Y-%m-%d')
+  pandas_df.index = pandas_df['date']
+  del pandas_df['date']
+  pandas_df.plot(y=["temp_min_mean_week","temp_max_mean_week","humidity","confirmed","deaths"], title=country)
 
-  plt.scatter(pandas_df.date, pandas_df.confirmed, pandas_df.temp_min_mean_week)
+  print("Now displaying line plot...")
+  plt.show()
 
   
 
@@ -136,9 +150,11 @@ def data_cleanse(wdf, cdf):
 
 
 
+country=cmd_line_arg()
+
 # Define variables
-covid_ds="covid_19_data.csv"
-weather_ds="weather.csv"
+covid_ds="datasets/covid_19_data.csv"
+weather_ds="datasets/weather.csv"
 
 # Check if datasets have been downloaded
 if path.exists(covid_ds) and path.exists(weather_ds):
@@ -158,10 +174,9 @@ wdf=spark.read.csv(weather_ds,inferSchema=True, header = True)
 
 sc = spark.sparkContext
 
-
 weathercovid_df = data_cleanse(wdf, cdf)
 data_ingest(weathercovid_df)
-data_analytics(weathercovid_df)
+data_analytics(weathercovid_df,country)
 
 spark.stop()
 sc.stop()
